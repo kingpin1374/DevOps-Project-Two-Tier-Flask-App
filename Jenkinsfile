@@ -1,9 +1,13 @@
 pipeline{
     agent any
+      triggers {
+        githubPush()
+    }
     stages{
         stage('Clone repo'){
             steps{
                 git branch: 'main', url: 'https://github.com/kingpin1374/DevOps-Project-Two-Tier-Flask-App.git'
+                credentialsId: 'github'
             }
         }
         stage('Build image'){
